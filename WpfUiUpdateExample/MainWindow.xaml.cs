@@ -60,8 +60,34 @@ namespace WpfUiUpdateExample
 
                     richTextBox.AppendText(newLine);
 
+                    // the sleeps is a stand-in for time consuming work
                     Thread.Sleep(500);
                 }
+            }
+        }
+
+        private async void AsyncWtihWorkInTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (new BusyScope())
+            {
+                // Task is used to perform the time consuming work in the background
+                await Task.Run(() =>
+                {
+                    for (var i = 0; i < 10; i++)
+                    {
+                        var newLine = $"Line {i}\n";
+
+                        // because this whole block is running in a background task, the Dispatcher.Invoke is used 
+                        // to update the control on the UI thread
+                        Dispatcher.Invoke(new Action(() =>
+                        {
+                            richTextBox.AppendText(newLine);
+                        }));
+
+                        // the sleeps is a stand-in for time consuming work
+                        Thread.Sleep(500);
+                    }
+                });
             }
         }
     }

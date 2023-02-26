@@ -11,12 +11,14 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Content="Async - Click to add content" Height="40" Click="AsyncButton_Click"/>
-        <Button Grid.Row="1" Content="Non-Async - Click to add content" Height="40" Click="NonAsyncButton_Click"/>
+        <Button Grid.Row="1" Content="Async with work in task - Click to add content" Height="40" Click="AsyncWtihWorkInTaskButton_Click"/>
+        <Button Grid.Row="2" Content="Non-Async - Click to add content" Height="40" Click="NonAsyncButton_Click"/>
 
-        <RichTextBox Grid.Row="22" x:Name="richTextBox">
+        <RichTextBox Grid.Row="3" x:Name="richTextBox">
             <FlowDocument>
                 <Paragraph>
                 </Paragraph>
